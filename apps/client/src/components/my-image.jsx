@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useEffect, useRef } from 'react';
+import { forwardRef, useEffect, useRef } from 'react';
 
 /** @see {@link https://github.com/vercel/next.js/blob/7ef6c4eb17b92fac2a71f52c99a23a9794438c3a/packages/next/src/client/image-component.tsx} */
 export default forwardRef(function MyImage(props, ref) {
