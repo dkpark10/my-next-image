@@ -1,48 +1,13 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const common = require('./webpack.config.common');
 
-const path = require('path');
+const { merge } = require('webpack-merge');
 
-module.exports = {
+module.exports = merge(common, {
   mode: 'development',
-
-  entry: './index.jsx',
 
   devServer: {
     port: 3000,
     open: true,
     hot: true,
   },
-
-  resolve: {
-		extensions: ['.js', '.jsx'],
-		alias: {
-			'@src': path.resolve(__dirname, './src/'),
-		},
-	},
-
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[contenthash].js',
-  },
-
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-      },
-      {
-        test: /\.(js|jsx)$/,
-        use: ['babel-loader'],
-        exclude: /node_modules/,
-      },
-    ],
-  },
-
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './index.html',
-      filename: 'index.html',
-    }),
-  ],
-};
+});
