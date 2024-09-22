@@ -3,12 +3,13 @@ const path = require('path');
 const common = require('./webpack.config.common');
 
 const { merge } = require('webpack-merge');
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = (env) => {
   const target = env.target;
 
   if (target !== 'node' && target !== 'web') {
-    throw new Error('target은 node나 web두가지 값을 설정하여야 합니다.');
+    throw new Error('target은 node가 아니거나 web이 아닙니다.');
   }
 
   return merge(common, {
@@ -18,6 +19,11 @@ module.exports = (env) => {
 
     // webpack이 어느 환경에서 실행될지 그 환경에 맞게 컴파일
     target,
+
+    // 번들링 파일에서 로드하지 않고 모듈을 외부에서 로드(ex: node_modules) 서버 환경에서 @loadable/component를 번들링하지 않고
+    // 외부에서 런타임에 호출한다.
+    externals:
+      target === 'node' ? ['@loadable/component', nodeExternals()] : undefined,
 
     output: {
       path: path.resolve(__dirname, `dist/${target}`),

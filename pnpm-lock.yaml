@@ -72,6 +72,9 @@ importers:
       webpack-merge:
         specifier: ^6.0.1
         version: 6.0.1
+      webpack-node-externals:
+        specifier: ^3.0.0
+        version: 3.0.0
 
   apps/server:
     dependencies:
@@ -5533,6 +5536,11 @@ packages:
       clone-deep: 4.0.1
       flat: 5.0.2
       wildcard: 2.0.1
+    dev: true
+
+  /webpack-node-externals@3.0.0:
+    resolution: {integrity: sha512-LnL6Z3GGDPht/AigwRh2dvL9PQPFQ8skEpVrWZXLWBYmqcaojHNN0onvHzie6rq7EWKrrBfPYqNEzTJgiwEQDQ==}
+    engines: {node: '>=6'}
     dev: true
 
   /webpack-sources@3.2.3:
