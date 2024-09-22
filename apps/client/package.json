@@ -8,6 +8,7 @@
     "build:server": "webpack --env target=node --config webpack.config.prod.js"
   },
   "dependencies": {
+    "@loadable/component": "^5.16.4",
     "react": "^18",
     "react-dom": "^18",
     "react-router-dom": "^6.26.2"

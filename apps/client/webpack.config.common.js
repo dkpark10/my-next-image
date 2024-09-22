@@ -5,8 +5,6 @@ const LoadablePlugin = require('@loadable/webpack-plugin');
 const path = require('path');
 
 module.exports = {
-  entry: './index.jsx',
-
   resolve: {
 		extensions: ['.js', '.jsx'],
 		alias: {

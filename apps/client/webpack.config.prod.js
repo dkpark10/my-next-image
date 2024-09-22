@@ -12,6 +12,8 @@ module.exports = (env) => {
   }
 
   return merge(common, {
+    entry: target === 'web' ? './index.jsx' : './app.jsx',
+
     mode: 'production',
 
     target,
