@@ -16,10 +16,11 @@ module.exports = (env) => {
 
     mode: 'production',
 
+    // webpack이 어느 환경에서 실행될지 그 환경에 맞게 컴파일
     target,
 
     output: {
-      path: path.resolve(__dirname, 'dist'),
+      path: path.resolve(__dirname, `dist/${target}`),
       filename: '[name].[contenthash].js',
       libraryTarget: target === 'node' ? 'commonjs2' : undefined,
       // publicPath: '/' 경로 prefix
