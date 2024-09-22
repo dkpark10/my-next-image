@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --config webpack.config.dev.js",
-    "build": "webpack --config webpack.config.prod.js"
+    "build:client": "webpack --env target=web --config webpack.config.prod.js",
+    "build:server": "webpack --env target=node --config webpack.config.prod.js"
   },
   "dependencies": {
     "react": "^18",
