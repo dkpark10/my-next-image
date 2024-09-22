@@ -14,9 +14,12 @@ module.exports = (env) => {
   return merge(common, {
     mode: 'production',
 
+    target,
+
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: '[name].[contenthash].js',
+      libraryTarget: target === 'node' ? 'commonjs2' : undefined,
       // publicPath: '/' 경로 prefix
     },
   });
