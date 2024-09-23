@@ -2,6 +2,7 @@
   "name": "my-image",
   "version": "0.1.0",
   "private": true,
+  "description": "",
   "scripts": {
     "dev": "webpack-dev-server --config webpack.config.dev.js",
     "build": "pnpm run build:client && pnpm run build:server",

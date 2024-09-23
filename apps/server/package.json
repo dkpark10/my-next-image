@@ -2,6 +2,7 @@
   "name": "image-server",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "dev": "node app.js"
@@ -12,6 +13,7 @@
   "dependencies": {
     "@loadable/server": "^5.16.5",
     "express": "^4.19.2",
+    "react-dom": "^18",
     "sharp": "^0.33.3"
   },
   "devDependencies": {
