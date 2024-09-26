@@ -13,17 +13,28 @@ module.exports = (env) => {
   }
 
   return merge(common, {
-    entry: target === 'web' ? './index.jsx' : './app.jsx',
+    entry: target === 'web' ? './index.jsx' : './index.ssr.jsx',
 
     mode: 'production',
 
     // webpack이 어느 환경에서 실행될지 그 환경에 맞게 컴파일
     target,
 
-    // 번들링 파일에서 로드하지 않고 모듈을 외부에서 로드(ex: node_modules) 서버 환경에서 @loadable/component를 번들링하지 않고
+    ...(target === 'node' && {
+      externalsPresets: { node: true },
+    }),
+
+    // 모듈을 외부에서 로드(ex: node_modules) 서버 환경에서 @loadable/component를 번들링하지 않고
     // 외부에서 런타임에 호출한다.
     externals:
-      target === 'node' ? ['@loadable/component', nodeExternals()] : undefined,
+      target === 'node'
+        ? [
+            '@loadable/component',
+            nodeExternals({
+              allowlist: [/^react/]
+            }),
+          ]
+        : undefined,
 
     output: {
       path: path.resolve(__dirname, `../../resources/dist/${target}`),

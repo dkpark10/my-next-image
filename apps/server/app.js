@@ -1,5 +1,6 @@
 import express from 'express';
 import path from 'path';
+import React from 'react';
 
 const app = express();
 const port = 8080;
@@ -22,6 +23,7 @@ const webStats = path.resolve(
 
 app.get('/', (_req, res) => {
   const nodeExtractor = new ChunkExtractor({ statsFile: nodeStats });
+
   const { default: App } = nodeExtractor.requireEntrypoint();
 
   const webExtractor = new ChunkExtractor({ statsFile: webStats });
@@ -30,7 +32,7 @@ app.get('/', (_req, res) => {
   const html = renderToString(jsx);
 
   res.set('content-type', 'text/html');
-  res.send(`
+  return res.send(`
       <!DOCTYPE html>
       <html>
         <head>

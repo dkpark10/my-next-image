@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@loadable/component": "^5.16.4",
+    "core-js": "^3.38.1",
     "react": "^18",
     "react-dom": "^18",
     "react-router-dom": "^6.26.2"
@@ -18,7 +19,6 @@
   "devDependencies": {
     "@loadable/babel-plugin": "^5.16.1",
     "@loadable/webpack-plugin": "^5.15.2",
-    "@vitejs/plugin-react": "^4.2.1",
     "babel-loader": "^9.2.1",
     "css-loader": "^7.1.2",
     "eslint": "^8",

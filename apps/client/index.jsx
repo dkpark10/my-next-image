@@ -1,12 +1,16 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./app";
+import 'core-js';
+import React from 'react';
+import { hydrateRoot } from 'react-dom/client';
+import { loadableReady } from '@loadable/component';
+import App from './app';
 
-const rootElement = document.getElementById("root");
-const root = ReactDOM.createRoot(rootElement);
+const rootElement = document.getElementById('root');
 
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+loadableReady(() => {
+  hydrateRoot(
+    rootElement,
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );
+});
