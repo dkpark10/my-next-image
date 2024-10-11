@@ -11,14 +11,16 @@ import { renderToString } from 'react-dom/server';
 // const apiRouter = require('./router/api.controller');
 // app.use('/api', apiRouter);
 
+app.use(express.static(path.join(__dirname, '../../resources')))
+
 const nodeStats = path.resolve(
   __dirname,
-  '../../resources/dist/node/loadable-stats.json'
+  '../../resources/dist/node/loadable-stats.json',
 );
 
 const webStats = path.resolve(
   __dirname,
-  '../../resources/dist/web/loadable-stats.json'
+  '../../resources/dist/web/loadable-stats.json',
 );
 
 app.get('/', (_req, res) => {
@@ -27,6 +29,7 @@ app.get('/', (_req, res) => {
   const { default: App } = nodeExtractor.requireEntrypoint();
 
   const webExtractor = new ChunkExtractor({ statsFile: webStats });
+
   const jsx = webExtractor.collectChunks(<App />);
 
   const html = renderToString(jsx);
@@ -40,7 +43,7 @@ app.get('/', (_req, res) => {
         ${webExtractor.getStyleTags()}
         </head>
         <body>
-          <div id="main">${html}</div>
+          <div id="root">${html}</div>
           ${webExtractor.getScriptTags()}
         </body>
       </html>

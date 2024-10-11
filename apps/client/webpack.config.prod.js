@@ -30,15 +30,18 @@ module.exports = (env) => {
       target === 'node'
         ? [
             '@loadable/component',
-            nodeExternals({
-              allowlist: [/^react/]
-            }),
+            nodeExternals(),
+
+            // nodeExternals({
+            //   allowlist: [/^react/]
+            // }),
           ]
         : undefined,
 
     output: {
       path: path.resolve(__dirname, `../../resources/dist/${target}`),
       filename: '[name].[contenthash].js',
+      publicPath: `/dist/${target}/`,
       libraryTarget: target === 'node' ? 'commonjs2' : undefined,
       // publicPath: '/' 경로 prefix
     },
