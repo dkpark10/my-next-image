@@ -1,7 +1,7 @@
-import path from 'path';
-import nodeExternals from 'webpack-node-externals';
-import LoadablePlugin from '@loadable/webpack-plugin';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+const path = require('path');
+const NodeExternals = require('webpack-node-externals');
+const LoadablePlugin = require('@loadable/webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const development =
   !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
@@ -21,7 +21,7 @@ const getConfig = (target) => ({
 	},
 
   entry:
-    target === 'web' ? './src/client/index.jsx' : './src/client/index.ssr.jsx',
+    target === 'web' ? './src/index.jsx' : './src/index.ssr.jsx',
 
   module: {
     rules: [
@@ -53,7 +53,7 @@ const getConfig = (target) => ({
   },
 
   externals:
-    target === 'node' ? ['@loadable/component', nodeExternals()] : undefined,
+    target === 'node' ? ['@loadable/component', NodeExternals()] : undefined,
 
   output: {
     path: path.resolve(__dirname, `../../resources/dist/${target}`),
@@ -65,4 +65,4 @@ const getConfig = (target) => ({
   plugins: [new LoadablePlugin(), new MiniCssExtractPlugin()],
 });
 
-export default [getConfig('web'), getConfig('node')];
+module.exports = [getConfig('web'), getConfig('node')];

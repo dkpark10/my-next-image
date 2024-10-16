@@ -8,14 +8,13 @@ const app = express();
 
 const port = 8080;
 
-app.use(express.static(path.join(__dirname, '../../../../resources')));
+app.use(express.static(path.join(__dirname, '../../../resources')));
 
 if (process.env.NODE_ENV !== 'production') {
   /* eslint-disable global-require, import/no-extraneous-dependencies */
-  const { default: webpackConfig } = require('../../webpack.config.babel');
+  const webpackConfig = require('../webpack.config.js');
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpack = require('webpack');
-  /* eslint-enable global-require, import/no-extraneous-dependencies */
 
   const compiler = webpack(webpackConfig);
 
@@ -31,12 +30,12 @@ if (process.env.NODE_ENV !== 'production') {
 
 const nodeStats = path.resolve(
   __dirname,
-  '../../../../resources/dist/node/loadable-stats.json'
+  '../../../resources/dist/node/loadable-stats.json'
 );
 
 const webStats = path.resolve(
   __dirname,
-  '../../../../resources/dist/web/loadable-stats.json'
+  '../../../resources/dist/web/loadable-stats.json'
 );
 
 app.get('*', (req, res) => {
