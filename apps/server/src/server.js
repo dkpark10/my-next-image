@@ -3,12 +3,15 @@ import express from 'express';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { ChunkExtractor } from '@loadable/server';
+import apiRouter from './router/api.controller';
 
 const app = express();
 
 const port = 8080;
 
 app.use(express.static(path.join(__dirname, '../../../resources')));
+
+// app.use('/api', apiRouter);
 
 if (process.env.NODE_ENV !== 'production') {
   /* eslint-disable global-require, import/no-extraneous-dependencies */
