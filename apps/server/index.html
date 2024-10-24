@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  {{ links | safe }}
+  {{ tags | safe }}
+</head>
+
+<body>
+  <div id="root">
+    {{ html | safe }}
+  </div>
+  {{ scripts | safe }}
+</body>
+
+</html>

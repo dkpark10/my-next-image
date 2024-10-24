@@ -6,7 +6,7 @@ import { loadableReady } from '@loadable/component'
 import App from './App'
 
 loadableReady(() => {
-  const rootElement = document.getElementById('main');
+  const rootElement = document.getElementById('root');
   hydrateRoot(
     rootElement,
     <React.StrictMode>

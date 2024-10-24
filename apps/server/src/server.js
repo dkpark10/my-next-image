@@ -3,11 +3,18 @@ import express from 'express';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { ChunkExtractor } from '@loadable/server';
+import nunjucks from 'nunjucks';
 import apiRouter from './router/api.controller';
 
 const app = express();
 
 const port = 8080;
+
+app.set('view engine', 'html');
+nunjucks.configure(process.env.INIT_CWD, {
+  express: app,
+  watch: true,
+});
 
 app.use(express.static(path.join(__dirname, '../../../resources')));
 
@@ -41,7 +48,7 @@ const webStats = path.resolve(
   '../../../resources/dist/web/loadable-stats.json'
 );
 
-app.get('*', (req, res) => {
+app.get('*', (_req, res) => {
   const nodeExtractor = new ChunkExtractor({ statsFile: nodeStats });
   const { default: App } = nodeExtractor.requireEntrypoint();
 
@@ -51,19 +58,12 @@ app.get('*', (req, res) => {
   const html = renderToString(jsx);
 
   res.set('content-type', 'text/html');
-  return res.send(`
-      <!DOCTYPE html>
-      <html>
-        <head>
-        ${webExtractor.getLinkTags()}
-        ${webExtractor.getStyleTags()}
-        </head>
-        <body>
-          <div id="main">${html}</div>
-          ${webExtractor.getScriptTags()}
-        </body>
-      </html>
-    `);
+  return res.render('index', {
+    links: webExtractor.getLinkTags(),
+    tags: webExtractor.getStyleTags(),
+    html,
+    scripts: webExtractor.getScriptTags(),
+  });
 });
 
 // eslint-disable-next-line no-console
