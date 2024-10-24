@@ -21,7 +21,7 @@ const getConfig = (target) => ({
 	},
 
   entry:
-    target === 'web' ? './src/index.jsx' : './src/index.ssr.jsx',
+    target === 'web' ? './src/client/index.jsx' : './src/client/index.ssr.jsx',
 
   module: {
     rules: [
