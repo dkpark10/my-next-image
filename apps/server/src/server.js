@@ -11,7 +11,7 @@ const port = 8080;
 
 app.use(express.static(path.join(__dirname, '../../../resources')));
 
-// app.use('/api', apiRouter);
+app.use('/api', apiRouter);
 
 if (process.env.NODE_ENV !== 'production') {
   /* eslint-disable global-require, import/no-extraneous-dependencies */
