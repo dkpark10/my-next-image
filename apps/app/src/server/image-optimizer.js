@@ -1,6 +1,26 @@
 /**
- * @param {string|null|undefined} str - The cache control header value as a string, or null/undefined if not present.
- * @returns {number} - The maximum age in seconds if found, otherwise returns 0.
+ * @param {string|null|undefined} str
+ * @returns {Map<string, string>}
+ */
+function parseCacheControl(str) {
+  const map = new Map();
+  if (!str) {
+    return map;
+  }
+  for (let directive of str.split(',')) {
+    let [key, value] = directive.trim().split('=', 2)
+    key = key.toLowerCase();
+    if (value) {
+      value = value.toLowerCase();
+    }
+    map.set(key, value);
+  }
+  return map;
+}
+
+/**
+ * @param {string|null|undefined} str
+ * @returns {number}
  */
 export function getMaxAge(str) {
   const map = parseCacheControl(str);
