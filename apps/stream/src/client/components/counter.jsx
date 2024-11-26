@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'; // 클라이언트에서 반드시 import React
 
 export default function Counter() {
   const [count, setCount] = useState(1);
