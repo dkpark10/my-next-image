@@ -1,9 +1,9 @@
 {
-  "name": "next-image-server",
+  "name": "next-image-server-stream",
   "private": true,
   "scripts": {
     "dev": "nodemon src/server/index.js",
-    "build": "rm -Rf ../resources/dist && NODE_ENV=production pnpm run build:webpack",
+    "build": "rm -Rf ./resources && NODE_ENV=production pnpm run build:webpack",
     "build:webpack": "webpack",
     "build:lib": "babel -d dist src",
     "start": "NODE_ENV=production node dist/server/index.js",
