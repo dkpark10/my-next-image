@@ -9,7 +9,7 @@ function Viewer() {
 }
 
 export default function App() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
 
   return (
     <React.Fragment>

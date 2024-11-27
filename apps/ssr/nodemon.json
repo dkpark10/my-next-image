@@ -1,5 +1,5 @@
 {
-  "ignore": ["client", "public"],
+  "ignore": ["client", "resources"],
   "execMap": {
     "js": "babel-node"
   }
