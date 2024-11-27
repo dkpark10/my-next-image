@@ -56,7 +56,7 @@ const getConfig = (target) => ({
     target === 'node' ? ['@loadable/component', NodeExternals()] : undefined,
 
   output: {
-    path: path.resolve(__dirname, `../../resources/dist/${target}`),
+    path: path.resolve(__dirname, `./resources/dist/${target}`),
     filename: '[name].[contenthash].js',
     publicPath: `/dist/${target}/`,
     libraryTarget: target === 'node' ? 'commonjs2' : undefined,

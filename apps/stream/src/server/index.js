@@ -4,15 +4,13 @@ import React from 'react';
 import { renderToPipeableStream } from 'react-dom/server';
 import App from '../client/App';
 
-const log = console.log;
 const app = express();
 
 const port = 8080;
 
 app.set('view engine', 'html');
 
-log(path.join(__dirname, '../../resources'));
-app.use(express.static(path.join(__dirname, '../../resources')));
+app.use(express.static(path.resolve(process.env.INIT_CWD, 'resources')));
 
 app.get('*', (_req, res) => {
   const stream = renderToPipeableStream(<App />, {

@@ -1,5 +1,4 @@
-import React, { Suspense, useState } from 'react';
-// import { Route, Routes, Link } from 'react-router-dom';
+import React, { useState } from 'react';
 
 function Post() {
   return <div>post</div>;

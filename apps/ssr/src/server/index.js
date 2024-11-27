@@ -16,36 +16,36 @@ nunjucks.configure(process.env.INIT_CWD, {
   watch: true,
 });
 
-app.use(express.static(path.join(__dirname, '../../../../resources')));
+app.use(express.static(path.resolve(process.env.INIT_CWD, 'resources')));
 
 app.use('/api', apiRouter);
 
-if (process.env.NODE_ENV !== 'production') {
-  /* eslint-disable global-require, import/no-extraneous-dependencies */
-  const webpackConfig = require('../../webpack.config.js');
-  const webpackDevMiddleware = require('webpack-dev-middleware');
-  const webpack = require('webpack');
+// if (process.env.NODE_ENV !== 'production') {
+//   /* eslint-disable global-require, import/no-extraneous-dependencies */
+//   const webpackConfig = require('../../webpack.config.js');
+//   const webpackDevMiddleware = require('webpack-dev-middleware');
+//   const webpack = require('webpack');
 
-  const compiler = webpack(webpackConfig);
+//   const compiler = webpack(webpackConfig);
 
-  app.use(
-    webpackDevMiddleware(compiler, {
-      publicPath: '/dist/web',
-      writeToDisk(filePath) {
-        return /dist\/node\//.test(filePath) || /loadable-stats/.test(filePath);
-      },
-    })
-  );
-}
+//   app.use(
+//     webpackDevMiddleware(compiler, {
+//       publicPath: '/dist/web',
+//       writeToDisk(filePath) {
+//         return /dist\/node\//.test(filePath) || /loadable-stats/.test(filePath);
+//       },
+//     })
+//   );
+// }
 
 const nodeStats = path.resolve(
-  __dirname,
-  '../../../../resources/dist/node/loadable-stats.json'
+  process.env.INIT_CWD,
+  'resources/dist/node/loadable-stats.json'
 );
 
 const webStats = path.resolve(
-  __dirname,
-  '../../../../resources/dist/web/loadable-stats.json'
+  process.env.INIT_CWD,
+  'resources/dist/web/loadable-stats.json'
 );
 
 app.get('*', (_req, res) => {
